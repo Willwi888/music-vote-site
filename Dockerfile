@@ -3,37 +3,32 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
 # Copy package files
-COPY package.json pnpm-lock.yaml ./
+COPY package.json package-lock.json* pnpm-lock.yaml* ./
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+# Install dependencies using npm (more reliable)
+RUN npm ci --legacy-peer-deps || npm install
 
 # Copy source code
 COPY . .
 
 # Build the project
-RUN pnpm build
+RUN npm run build
 
 # Runtime stage
 FROM node:22-alpine
 
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
 # Copy package files
-COPY package.json pnpm-lock.yaml ./
+COPY package.json package-lock.json* pnpm-lock.yaml* ./
 
 # Install only production dependencies
-RUN pnpm install --frozen-lockfile --prod
+RUN npm ci --legacy-peer-deps --only=production || npm install --only=production
 
 # Copy built files from builder
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/dist/public ./dist/public
 
 # Expose port
 EXPOSE 3000

@@ -207,3 +207,5 @@
 - [x] 創建 Dockerfile 確保部署時正確構建項目
 - [x] 配置部署環境變數
 - [x] 測試 Docker 構建
+- [x] 修改 package.json start 命令使用 npm 而不是 pnpm
+- [x] 修改 Dockerfile 使用 npm 而不是 pnpm
