@@ -138,48 +138,51 @@ export default function Home() {
   return (
     <div className="pb-24">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Global Breathing Gold Glow */}
         <div className="fixed inset-0 pointer-events-none z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent animate-pulse-slow" />
         </div>
 
-        <div className="absolute inset-0 z-0">
-          {/* Clean gradient overlay for cinematic effect */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background z-10" />
-          {/* Clean portrait photo - no heavy filters */}
-          <div className="absolute inset-0 bg-[url('/images/cover.jpg')] bg-contain bg-top md:bg-cover md:bg-top bg-no-repeat opacity-95 scale-100" />
-        </div>
+        <div className="container relative z-20 px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left: Portrait Photo (Mobile: Top) */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              className="relative order-1 md:order-1"
+            >
+              <div className="relative w-full max-w-md mx-auto md:mx-0">
+                <img 
+                  src="/images/cover.jpg" 
+                  alt="Willwi Portrait" 
+                  className="w-full h-auto object-contain rounded-lg"
+                />
+              </div>
+            </motion.div>
 
-        <div className="container relative z-20 px-4 flex flex-col items-center md:items-end text-center md:text-right space-y-8">
-          <div className="max-w-2xl md:mr-12 lg:mr-24 mt-[60vh] md:mt-[50vh]">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="text-5xl md:text-7xl font-serif tracking-widest text-white mb-4"
+            {/* Right: Text Content (Mobile: Bottom) */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="relative order-2 md:order-2 text-center md:text-left"
             >
-              {t.home.title}
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="text-lg md:text-xl text-muted-foreground font-light tracking-wide mb-8"
-            >
-              {t.home.subtitle}
-            </motion.p>
+              <h1 className="text-6xl md:text-8xl font-serif tracking-wider mb-6">
+                <div className="font-light italic text-white/90">Beloved</div>
+                <div className="font-bold tracking-widest text-white">摯愛</div>
+              </h1>
+              
+              <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wide mb-8">
+                {t.home.subtitle}
+              </p>
 
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="text-sm md:text-base text-gray-400 space-y-4 leading-relaxed"
-            >
-              <p>{t.home.intro1}</p>
-              <p>{t.home.intro2}</p>
-              <p className="text-primary/80 italic">{t.home.intro3}</p>
+              <div className="text-base md:text-lg text-gray-300 space-y-5 leading-relaxed">
+                <p>{t.home.intro1}</p>
+                <p>{t.home.intro2}</p>
+                <p className="text-primary/80 italic">{t.home.intro3}</p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -387,6 +390,18 @@ export default function Home() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Footer */}
+      <footer className="mt-24 py-8 border-t border-white/10">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Willwi Music. All Rights Reserved.
+          </p>
+          <p className="text-xs text-muted-foreground/70 mt-2">
+            Willwi Music 版權所有
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
