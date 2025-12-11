@@ -178,9 +178,25 @@ export default function Home() {
                 {t.home.subtitle}
               </p>
 
-              <div className="text-base md:text-lg text-gray-300 space-y-5 leading-relaxed">
+              <div className="text-base md:text-lg text-gray-300 space-y-6 leading-relaxed">
                 <p>{t.home.intro1}</p>
+                
+                {/* Gold Divider Line 1 */}
+                <div className="flex items-center gap-3 my-6">
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-primary to-primary"></div>
+                  <div className="h-[1px] w-12 bg-primary"></div>
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-primary via-primary to-transparent"></div>
+                </div>
+                
                 <p>{t.home.intro2}</p>
+                
+                {/* Gold Divider Line 2 */}
+                <div className="flex items-center gap-3 my-6">
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-primary to-primary"></div>
+                  <div className="h-[1px] w-12 bg-primary"></div>
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-primary via-primary to-transparent"></div>
+                </div>
+                
                 <p className="text-primary/80 italic">{t.home.intro3}</p>
               </div>
             </motion.div>
@@ -207,8 +223,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
               className={cn(
-                "group relative bg-card/50 border border-white/5 p-6 rounded-lg transition-all duration-500 hover:border-primary/30 hover:bg-card/80",
-                selectedSongs.includes(song.id) && "border-primary/50 bg-primary/5"
+                "group relative bg-transparent p-6 rounded-lg transition-all duration-500 hover:bg-card/30",
+                selectedSongs.includes(song.id) && "bg-primary/5"
               )}
             >
               <div className="flex justify-between items-start mb-4">
