@@ -141,7 +141,7 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Global Breathing Gold Glow */}
         <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent animate-pulse-slow" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_var(--tw-gradient-stops))] from-[#D4AF37]/20 via-[#D4AF37]/5 to-transparent" style={{ animation: 'breathe 6s ease-in-out infinite' }} />
         </div>
 
         <div className="container relative z-20 px-4 py-12">
@@ -393,13 +393,19 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="mt-24 py-8 border-t border-white/10">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Willwi Music. All Rights Reserved.
-          </p>
-          <p className="text-xs text-muted-foreground/70 mt-2">
-            Willwi Music 版權所有
-          </p>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Willwi Music. All Rights Reserved.
+            </p>
+            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <a href="https://willwi.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Official Website</a>
+              <span className="text-muted-foreground/30">|</span>
+              <a href="https://www.instagram.com/willwi888" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
+              <span className="text-muted-foreground/30">|</span>
+              <a href="https://www.youtube.com/@Willwi888" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
