@@ -45,11 +45,11 @@ export const translations = {
       email: "你的 Email (用於接收有聲卡片)"
     },
     thankyou: {
-      title: "你的選擇與故事，我都收到了",
-      content1: "我會親自閱讀，也會親自珍惜。",
-      content2: "所有參與投票的人，都會收到我錄製的 有聲音樂卡片。這是一份獻給你的回禮，也是你曾在這段旅程中陪著我的證明。",
-      footer: "謝謝你願意一起完成《摯愛》。這張專輯的形狀，因你而更靠近真心。"
-    }
+      title: "感謝您的參與",
+      content1: "摯愛",
+      content2: "愛致",
+      footer: "我會親自錄製有聲卡片給您，作為感謝的回禮。"
+    },
   },
   en: {
     home: {
@@ -95,11 +95,11 @@ export const translations = {
       email: "Your Email (to receive the Audio Postcard)"
     },
     thankyou: {
-      title: "Your choices and your stories have reached me",
-      content1: "I will read them all personally, and I will keep them close.",
-      content2: "Everyone who participates will receive an Audio Postcard recorded by me. It is my gift to you, and a quiet proof that you walked with me through this journey.",
-      footer: "Thank you for helping shape “Beloved.” Because of you, this album grows closer to its true heart."
-    }
+      title: "Thank you for your participation",
+      content1: "Beloved",
+      content2: "With love",
+      footer: "I will personally record an Audio Postcard for you as a token of my gratitude."
+    },
   },
   ja: {
     home: {
@@ -145,10 +145,10 @@ export const translations = {
       email: "メールアドレス (ミュージックカード送付用)"
     },
     thankyou: {
-      title: "あなたが選んだ曲、あなたが書いてくれた言葉",
-      content1: "すべて受け取りました。大切に読ませていただきます。",
-      content2: "投票してくれたすべての方に、私からの 音声付きミュージックカード をお送りします。それは感謝の気持ちであり、この旅を一緒に歩いてくれた証です。",
-      footer: "「摯愛」という作品が、本当の姿に近づくのはあなたのおかげです。"
+      title: "ご参加ありがとうございます",
+      content1: "摯愛",
+      content2: "愛致",
+      footer: "感謝の気持ちを込めて、音声付きミュージックカードをお送りします。"
     }
   }
 };

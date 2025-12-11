@@ -255,44 +255,35 @@ export default function Home() {
               </div>
 
               <div className="space-y-4">
-                <div className="space-y-3">
-                  {/* Audio Player Area */}
-                  <div className="min-h-[40px]">
-                    {playingSongId === song.id ? (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                      >
-                        <AudioPlayer 
-                          src={`https://www.dropbox.com/s/${song.driveId}/preview.mp3?dl=0`} // Construct URL dynamically
-                          isPlaying={true}
-                          onPlayPause={() => handlePlay(song.id)}
-                          onEnded={() => setPlayingSongId(null)}
-                        />
-                      </motion.div>
-                    ) : (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="h-8 w-full border-white/10 text-xs hover:text-primary hover:border-primary/30 hover:bg-white/5 justify-start"
-                        onClick={() => handlePlay(song.id)}
-                      >
-                        <Music2 size={14} className="mr-2 opacity-70" />
-                        Play Preview
-                      </Button>
-                    )}
-                  </div>
-
+                {/* Frosted Glass Player */}
+                <div 
+                  onClick={() => handlePlay(song.id)}
+                  className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 cursor-pointer hover:bg-white/10 hover:border-primary/30 transition-all duration-300"
+                >
                   <div className="flex items-center justify-between">
-                    <Button 
-                      variant="link" 
-                      className="text-xs text-white hover:text-primary p-0 h-auto"
-                      onClick={() => toggleLyricsExpand(song.id)}
-                    >
-                      {expandedSongId === song.id ? '隱藏歌詞' : '查看歌詞和致謝'}
-                    </Button>
+                    <div className="flex-1">
+                      <h4 className="font-serif text-sm text-white truncate">{song.title}</h4>
+                      <p className="text-xs text-primary/70 mt-1">
+                        {playingSongId === song.id ? '▶ Playing...' : '▶ Click to play'}
+                      </p>
+                    </div>
+                    <Music2 size={16} className="text-primary/60 group-hover:text-primary transition-colors ml-2" />
                   </div>
+                  
+                  {/* Audio Player - Hidden but functional */}
+                  {playingSongId === song.id && (
+                    <div className="mt-3 pt-3 border-t border-white/5">
+                      <AudioPlayer 
+                        src={`https://www.dropbox.com/s/${song.driveId}/preview.mp3?dl=0`}
+                        isPlaying={true}
+                        onPlayPause={() => handlePlay(song.id)}
+                        onEnded={() => setPlayingSongId(null)}
+                      />
+                    </div>
+                  )}
                 </div>
+
+                {/* Lyrics & Credits - Shown when expanded */}
                 
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 

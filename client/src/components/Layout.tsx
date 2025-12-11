@@ -16,7 +16,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       {/* Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-serif font-bold tracking-widest hover:text-primary transition-colors duration-300">
+          <Link href="/" className="text-xl font-serif font-bold tracking-widest text-primary hover:text-primary/80 transition-colors duration-300">
             WILLWI
           </Link>
 
@@ -25,28 +25,28 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <button
                 onClick={() => setLanguage('zh')}
                 className={cn(
-                  "px-2 py-1 transition-colors duration-300 hover:text-primary",
-                  language === 'zh' ? "text-primary font-bold" : "text-muted-foreground"
+                  "px-2 py-1 transition-colors duration-300",
+                  language === 'zh' ? "text-primary font-bold" : "text-primary/60 hover:text-primary"
                 )}
               >
                 繁
               </button>
-              <span className="text-muted-foreground/30">|</span>
+              <span className="text-primary/20">|</span>
               <button
                 onClick={() => setLanguage('en')}
                 className={cn(
-                  "px-2 py-1 transition-colors duration-300 hover:text-primary",
-                  language === 'en' ? "text-primary font-bold" : "text-muted-foreground"
+                  "px-2 py-1 transition-colors duration-300",
+                  language === 'en' ? "text-primary font-bold" : "text-primary/60 hover:text-primary"
                 )}
               >
                 EN
               </button>
-              <span className="text-muted-foreground/30">|</span>
+              <span className="text-primary/20">|</span>
               <button
                 onClick={() => setLanguage('ja')}
                 className={cn(
-                  "px-2 py-1 transition-colors duration-300 hover:text-primary",
-                  language === 'ja' ? "text-primary font-bold" : "text-muted-foreground"
+                  "px-2 py-1 transition-colors duration-300",
+                  language === 'ja' ? "text-primary font-bold" : "text-primary/60 hover:text-primary"
                 )}
               >
                 JP
@@ -77,13 +77,17 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             <p className="text-muted-foreground text-sm tracking-wide">{t.about.footer}</p>
           </div>
           
-          <div className="flex justify-center gap-6 mb-8 text-sm text-muted-foreground">
+          <div className="flex justify-center gap-6 mb-8 text-sm text-primary/80">
             <a href="https://willwi.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Official Website</a>
             <a href="https://www.instagram.com/willwi888" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
             <a href="https://www.youtube.com/@Willwi888" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a>
           </div>
 
-          <div className="text-xs text-muted-foreground/50 tracking-wider">
+          <div className="mt-6 pt-6 border-t border-primary/20">
+            <Link href="/admin" className="text-xs text-primary/60 hover:text-primary transition-colors">經理登入</Link>
+          </div>
+
+          <div className="text-xs text-primary/60 tracking-wider">
             <p>&copy; 2025 Willwi Music. All Rights Reserved.</p>
           </div>
         </div>
