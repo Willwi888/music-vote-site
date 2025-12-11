@@ -115,35 +115,37 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('/images/cover.jpg')] bg-contain bg-top md:bg-cover md:bg-top bg-no-repeat opacity-80 scale-100" />
         </div>
 
-        <div className="container relative z-20 px-4 text-center space-y-8">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-serif tracking-widest text-white mb-4"
-          >
-            {t.home.title}
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light tracking-wide"
-          >
-            {t.home.subtitle}
-          </motion.p>
+        <div className="container relative z-20 px-4 flex flex-col items-center md:items-start text-center md:text-left space-y-8">
+          <div className="max-w-2xl md:ml-12 lg:ml-24 mt-48 md:mt-0">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="text-5xl md:text-7xl font-serif tracking-widest text-white mb-4"
+            >
+              {t.home.title}
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="text-lg md:text-xl text-muted-foreground font-light tracking-wide mb-8"
+            >
+              {t.home.subtitle}
+            </motion.p>
 
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="max-w-prose mx-auto text-sm md:text-base text-gray-400 space-y-4 leading-relaxed"
-          >
-            <p>{t.home.intro1}</p>
-            <p>{t.home.intro2}</p>
-            <p className="text-primary/80 italic">{t.home.intro3}</p>
-          </motion.div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="text-sm md:text-base text-gray-400 space-y-4 leading-relaxed"
+            >
+              <p>{t.home.intro1}</p>
+              <p>{t.home.intro2}</p>
+              <p className="text-primary/80 italic">{t.home.intro3}</p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
