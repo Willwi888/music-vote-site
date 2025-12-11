@@ -200,3 +200,10 @@
 - [x] 修復 dist/index.js 找不到的問題
 - [x] 確保 dist 文件夾被正確構建和部署
 - [x] 重新部署到線上
+
+
+## 部署 Dockerfile 創建 😳
+
+- [x] 創建 Dockerfile 確保部署時正確構建項目
+- [x] 配置部署環境變數
+- [x] 測試 Docker 構建
