@@ -198,11 +198,73 @@ export default function Admin() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="songs" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 max-w-md">
+        <Tabs defaultValue="stats" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-3 max-w-2xl">
+            <TabsTrigger value="stats">投票統計</TabsTrigger>
             <TabsTrigger value="songs">歌曲管理</TabsTrigger>
             <TabsTrigger value="backup">備份管理</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="stats" className="space-y-4">
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              <Card className="bg-card border-white/10">
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <p className="text-muted-foreground text-sm mb-2">Total Votes</p>
+                    <p className="text-3xl font-bold" style={{ color: '#D4AF37' }}>0</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-card border-white/10">
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <p className="text-muted-foreground text-sm mb-2">Total Selections</p>
+                    <p className="text-3xl font-bold" style={{ color: '#D4AF37' }}>0</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-card border-white/10">
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <p className="text-muted-foreground text-sm mb-2">Avg per Song</p>
+                    <p className="text-3xl font-bold" style={{ color: '#D4AF37' }}>0</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-card border-white/10">
+              <CardHeader>
+                <CardTitle style={{ color: '#D4AF37' }}>All Songs - Vote Count</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ScrollArea className="h-[600px]">
+                  <div className="space-y-2 pr-4">
+                    {songs.map((song, index) => (
+                      <div key={song.id} className="flex items-center justify-between p-3 hover:bg-white/5 rounded transition-colors">
+                        <div className="flex items-center gap-3 flex-1 min-w-0">
+                          <span style={{ color: '#D4AF37' }} className="font-mono w-6 text-right text-sm">{index + 1}</span>
+                          <span className="text-sm truncate">{song.title}</span>
+                        </div>
+                        <div className="flex items-center gap-3 ml-4">
+                          <div className="w-32 bg-white/10 rounded-full h-2 overflow-hidden">
+                            <div 
+                              className="h-full transition-all duration-300" 
+                              style={{ 
+                                width: '0%',
+                                backgroundColor: '#D4AF37'
+                              }}
+                            />
+                          </div>
+                          <span style={{ color: '#D4AF37' }} className="font-mono w-8 text-right text-sm">0</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </ScrollArea>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
           <TabsContent value="songs" className="space-y-4">
             <div className="flex justify-between items-center">
