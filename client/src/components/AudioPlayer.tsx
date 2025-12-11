@@ -16,20 +16,30 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, isPlaying, onPlay
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   // Convert Dropbox URL to direct stream URL
   const streamUrl = src.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '');
 
+  // Check if audio source is valid (not placeholder)
+  const isValidAudio = src && !src.includes('placeholder') && src.startsWith('http');
+
   useEffect(() => {
+    if (!isValidAudio) {
+      setHasError(true);
+      return;
+    }
+
     if (isPlaying) {
       audioRef.current?.play().catch(error => {
-        console.error("Playback failed:", error);
+        console.warn("Playback failed:", error.message);
+        setHasError(true);
         onPlayPause(); // Revert state if play fails
       });
     } else {
       audioRef.current?.pause();
     }
-  }, [isPlaying, onPlayPause]);
+  }, [isPlaying, onPlayPause, isValidAudio]);
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -57,6 +67,27 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, isPlaying, onPlay
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
+  // Show disabled state if no valid audio
+  if (!isValidAudio || hasError) {
+    return (
+      <div className="w-full bg-card/30 border border-white/5 rounded-lg p-3 flex items-center gap-3 backdrop-blur-sm opacity-50">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-8 w-8 rounded-full border border-primary/20 text-primary/50 cursor-not-allowed"
+          disabled
+        >
+          <Play size={14} className="ml-0.5" />
+        </Button>
+        <div className="flex-1">
+          <div className="text-[10px] text-muted-foreground/50">
+            音頻預覽即將推出
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full bg-card/50 border border-white/5 rounded-lg p-3 flex items-center gap-3 backdrop-blur-sm">
       <audio
@@ -70,6 +101,11 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, isPlaying, onPlay
         }}
         onWaiting={() => setIsLoading(true)}
         onCanPlay={() => setIsLoading(false)}
+        onError={(e) => {
+          console.warn("Audio load error:", e);
+          setHasError(true);
+          onPlayPause();
+        }}
         controlsList="nodownload" // Native protection
         className="hidden" // Hide native player
       />
