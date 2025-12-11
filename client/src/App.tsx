@@ -6,16 +6,14 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { TranslationProvider } from "@/hooks/useTranslation";
 import { Layout } from "@/components/Layout";
 import Home from "./pages/Home";
-import AdminLogin from "./pages/AdminLogin";
-import AdminDashboard from "./pages/AdminDashboard";
+import Admin from "./pages/Admin";
 
 function Router() {
   return (
     <Layout>
       <Switch>
         <Route path="/" component={Home} />
-        <Route path="/admin" component={AdminLogin} />
-        <Route path="/admin/dashboard" component={AdminDashboard} />
+        <Route path="/admin" component={Admin} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

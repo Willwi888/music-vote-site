@@ -67,34 +67,34 @@
 
 @layer base {
   :root {
-    /* Luxury Dark Theme Variables */
-    --background: 0 0% 2%; /* #050505 Rich Black */
-    --foreground: 0 0% 100%; /* #FFFFFF Pure White */
+    /* Cinematic Black & Gray Theme with Gold Glow */
+    --background: 0 0% 5%; /* #0D0D0D Deep Black */
+    --foreground: 0 0% 95%; /* #F2F2F2 Soft White */
 
-    --card: 0 0% 10%; /* #1A1A1A Dark Gray */
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 8%; /* #141414 Charcoal */
+    --card-foreground: 0 0% 90%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 90%;
 
-    --primary: 46 65% 52%; /* #D4AF37 Metallic Gold */
+    --primary: 46 65% 52%; /* #D4AF37 Gold (for glow only) */
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 25%; /* #404040 Medium Gray */
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%; /* #B0B0B0 Silver Gray */
+    --muted: 0 0% 15%; /* #262626 Dark Gray */
+    --muted-foreground: 0 0% 60%; /* #999999 Silver */
 
-    --accent: 46 65% 52%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 0 0% 80%; /* #CCCCCC Silver Gray for buttons */
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 46 65% 52%;
+    --border: 0 0% 18%; /* #2E2E2E */
+    --input: 0 0% 18%;
+    --ring: 0 0% 70%; /* Silver ring */
 
     --radius: 0.5rem;
   }

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 import { useVote } from '../hooks/useVote';
-import { songs } from '../lib/songs';
+import { loadSongs } from '../lib/songs';
+import { initializeSongs } from '../lib/initSongs';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -11,6 +12,7 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Check, Music2, Info } from 'lucide-react';
 import { AudioPlayer } from '@/components/AudioPlayer';
+import { FeaturedPlayer } from '@/components/FeaturedPlayer';
 import { cn } from '@/lib/utils';
 
 // Submit vote to Formspree (which forwards to email and stores data)
@@ -46,6 +48,14 @@ const submitVoteToGoogleSheets = async (data: any) => {
 
 export default function Home() {
   const { t, language } = useTranslation();
+  const [songs, setSongs] = useState(loadSongs());
+  
+  // Initialize songs from backup on first load
+  useEffect(() => {
+    initializeSongs().then(() => {
+      setSongs(loadSongs());
+    });
+  }, []);
   const {
     selectedSongs,
     toggleSong,
@@ -135,13 +145,14 @@ export default function Home() {
         </div>
 
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-background/50 to-background z-10" />
-          {/* Adjusted for full portrait visibility: contain on mobile, cover-top on desktop */}
-          <div className="absolute inset-0 bg-[url('/images/cover.jpg')] bg-contain bg-top md:bg-cover md:bg-top bg-no-repeat opacity-80 scale-100" />
+          {/* Clean gradient overlay for cinematic effect */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background z-10" />
+          {/* Clean portrait photo - no heavy filters */}
+          <div className="absolute inset-0 bg-[url('/images/cover.jpg')] bg-contain bg-top md:bg-cover md:bg-top bg-no-repeat opacity-95 scale-100" />
         </div>
 
-        <div className="container relative z-20 px-4 flex flex-col items-center md:items-start text-center md:text-left space-y-8">
-          <div className="max-w-2xl md:ml-12 lg:ml-24 mt-48 md:mt-0">
+        <div className="container relative z-20 px-4 flex flex-col items-center md:items-end text-center md:text-right space-y-8">
+          <div className="max-w-2xl md:mr-12 lg:mr-24 mt-[60vh] md:mt-[50vh]">
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -172,6 +183,14 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+      </section>
+
+      {/* Featured Player */}
+      <section className="container mx-auto px-4 py-8">
+        <FeaturedPlayer 
+          title={songs[0]?.title || "精選歌曲"}
+          audioUrl={songs[0]?.customAudioUrl}
+        />
       </section>
 
       {/* Song List */}
