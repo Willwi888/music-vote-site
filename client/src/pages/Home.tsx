@@ -13,10 +13,35 @@ import { Check, Music2, Info } from 'lucide-react';
 import { AudioPlayer } from '@/components/AudioPlayer';
 import { cn } from '@/lib/utils';
 
-// Mock function for submission (will be replaced with real API call)
+// Submit vote to Formspree (which forwards to email and stores data)
 const submitVoteToGoogleSheets = async (data: any) => {
-  console.log('Submitting vote:', data);
-  return new Promise(resolve => setTimeout(resolve, 1000));
+  const formspreeEndpoint = 'https://formspree.io/f/xnnqbgpo'; // Formspree endpoint
+  
+  // Format data for submission
+  const formData = {
+    name: data.name,
+    email: data.email,
+    message: data.message,
+    songs: data.songs.join(', '),
+    songCount: data.songs.length,
+    language: data.language,
+    timestamp: data.timestamp,
+    _subject: `新投票：${data.name} 選擇了 ${data.songs.length} 首歌`,
+  };
+
+  const response = await fetch(formspreeEndpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to submit vote');
+  }
+
+  return response.json();
 };
 
 export default function Home() {
