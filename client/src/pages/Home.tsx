@@ -103,11 +103,15 @@ export default function Home() {
   return (
     <div className="pb-24">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        {/* Global Breathing Gold Glow */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37]/10 via-transparent to-transparent animate-pulse-slow" />
+        </div>
+
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background z-10" />
-          {/* Placeholder for cover image - using CSS gradient for now */}
-          <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-800 via-black to-black opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-background/60 to-background z-10" />
+          <div className="absolute inset-0 bg-[url('/images/cover.jpg')] bg-cover bg-center bg-no-repeat opacity-60 scale-105 animate-subtle-zoom" />
         </div>
 
         <div className="container relative z-20 px-4 text-center space-y-8">
