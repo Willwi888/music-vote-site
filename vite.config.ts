@@ -13,9 +13,10 @@ export default defineConfig({
   build: {
     outDir: "../dist/public",
     emptyOutDir: true,
+    chunkSizeWarningLimit: 1000,
   },
   server: {
     port: 3000,
-    host: true,
+    host: "0.0.0.0",
   },
 });
