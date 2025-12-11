@@ -110,8 +110,9 @@ export default function Home() {
         </div>
 
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-background/60 to-background z-10" />
-          <div className="absolute inset-0 bg-[url('/images/cover.jpg')] bg-cover bg-center bg-no-repeat opacity-60 scale-105 animate-subtle-zoom" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-background/50 to-background z-10" />
+          {/* Adjusted for full portrait visibility: contain on mobile, cover-top on desktop */}
+          <div className="absolute inset-0 bg-[url('/images/cover.jpg')] bg-contain bg-top md:bg-cover md:bg-top bg-no-repeat opacity-80 scale-100" />
         </div>
 
         <div className="container relative z-20 px-4 text-center space-y-8">
