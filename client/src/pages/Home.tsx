@@ -73,6 +73,7 @@ export default function Home() {
   } = useVote();
 
   const [playingSongId, setPlayingSongId] = useState<number | null>(null);
+  const [expandedSongId, setExpandedSongId] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -82,6 +83,10 @@ export default function Home() {
     } else {
       setPlayingSongId(songId);
     }
+  };
+
+  const toggleLyricsExpand = (songId: number) => {
+    setExpandedSongId(expandedSongId === songId ? null : songId);
   };
 
   const handleSubmit = async () => {
@@ -115,8 +120,8 @@ export default function Home() {
           className="max-w-md space-y-6"
         >
           <h2 className="text-3xl font-serif text-primary mb-4">{t.thankyou.title}</h2>
-          <p className="text-muted-foreground leading-relaxed">{t.thankyou.content1}</p>
-          <p className="text-muted-foreground leading-relaxed">{t.thankyou.content2}</p>
+          <p className="text-white leading-relaxed">{t.thankyou.content1}</p>
+          <p className="text-white leading-relaxed">{t.thankyou.content2}</p>
           <div className="pt-8 border-t border-white/10 mt-8">
             <p className="text-sm text-primary/80 italic">{t.thankyou.footer}</p>
           </div>
@@ -174,11 +179,11 @@ export default function Home() {
                 <div className="font-bold tracking-widest text-white">摯愛</div>
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wide mb-8">
+              <p className="text-xl md:text-2xl text-white font-light tracking-wide mb-8">
                 {t.home.subtitle}
               </p>
 
-              <div className="text-base md:text-lg text-gray-300 space-y-6 leading-relaxed">
+              <div className="text-base md:text-lg text-white space-y-6 leading-relaxed">
                 <p>{t.home.intro1}</p>
                 
                 {/* Gold Divider Line 1 */}
@@ -279,32 +284,44 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <Dialog>
-                    <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-card border-white/10">
-                      <DialogHeader>
-                        <DialogTitle className="font-serif text-2xl text-primary mb-2">{song.title}</DialogTitle>
-                        <DialogDescription className="whitespace-pre-line text-muted-foreground leading-relaxed">
-                          {song.lyrics}
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="mt-6 pt-6 border-t border-white/5 text-xs text-muted-foreground/50 whitespace-pre-line font-mono">
-                        {song.credits}
-                      </div>
-                    </DialogContent>
-                      <DialogTrigger asChild>
-                        <Button variant="link" className="text-xs text-muted-foreground hover:text-primary p-0 h-auto">
-                          View Lyrics & Credits
-                        </Button>
-                      </DialogTrigger>
-                    </Dialog>
+                    <Button 
+                      variant="link" 
+                      className="text-xs text-white hover:text-primary p-0 h-auto"
+                      onClick={() => toggleLyricsExpand(song.id)}
+                    >
+                      {expandedSongId === song.id ? '隱藏歌詞' : '查看歌詞和致謝'}
+                    </Button>
                   </div>
                 </div>
                 
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 
-                <p className="text-xs text-muted-foreground line-clamp-2 italic opacity-60">
-                  {song.lyrics.slice(0, 50)}...
-                </p>
+                {expandedSongId === song.id && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-4 pt-4 border-t border-white/10 space-y-4"
+                  >
+                    <div>
+                      <h4 className="text-sm font-serif text-white mb-2">歌詞</h4>
+                      <p className="text-xs text-white leading-relaxed whitespace-pre-line max-h-[200px] overflow-y-auto">
+                        {song.lyrics}
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-serif text-white mb-2">製作資訊</h4>
+                      <p className="text-xs text-white/80 whitespace-pre-line font-mono max-h-[100px] overflow-y-auto">
+                        {song.credits}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+                {expandedSongId !== song.id && (
+                  <p className="text-xs text-white/70 line-clamp-2 italic opacity-60">
+                    {song.lyrics.slice(0, 50)}...
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}
